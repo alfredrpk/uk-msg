@@ -9,8 +9,8 @@ function Login() {
   return (
     <div className="login">
       <div className="login__logo">
-        <p className="login__title">🤖</p>
-        <p className="login__title">robo boys</p>
+        <p className="login__title">🇬🇧</p>
+        <p className="login__title">the uk (fake)</p>
       </div>
       <button onClick={signIn}>Sign In</button>
     </div>
