@@ -1,6 +1,7 @@
 import React from 'react';
 import './Login.css';
 import { auth, provider } from '../../firebase/config';
+import { ReactComponent as UkFlag } from '../../images/uk-flag.svg'
 
 function Login() {
   const signIn = () => {
@@ -9,7 +10,7 @@ function Login() {
   return (
     <div className="login">
       <div className="login__logo">
-        <p className="login__title">🇬🇧</p>
+        <UkFlag className="emoji" />
         <p className="login__title">the uk (fake)</p>
       </div>
       <button onClick={signIn}>Sign In</button>

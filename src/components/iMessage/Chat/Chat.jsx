@@ -10,6 +10,7 @@ import { selectUser } from '../../../features/userSlice';
 import db from '../../../firebase/config';
 import firebase from 'firebase';
 import FlipMove from 'react-flip-move';
+import { ReactComponent as UkFlag } from '../../../images/uk-flag.svg'
 
 function Chat() {
   const [input, setInput] = useState('');
@@ -149,11 +150,11 @@ function Chat() {
 
   const ConvoStatus = () => {
     if(conversationStatus === true) {
-      return  (<div className='convo__status'>
+      return  (<div className='bot__status'>
         <p>convo status: <b>Creating a conversation... Please wait</b></p>
       </div>)
     } else {
-      return (<div className='convo__status'>
+      return (<div className='bot__status'>
       <p>convo status: <b>Free to create conversation</b></p>
     </div>)
     }
@@ -204,7 +205,7 @@ function Chat() {
     <div className="chat">
       <div className="chat__header">
         <div className="header__icon">
-          <p>🇬🇧</p>
+          <UkFlag className="emojichat" />
         <p>
           {chatName}
         </p>
@@ -238,7 +239,7 @@ function Chat() {
         <form method="POST" onSubmit={(e) => sendMessage(e)}>
           <input
             type="text"
-            placeholder="iMessage"
+            placeholder="Message #question-time"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />

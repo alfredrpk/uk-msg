@@ -4,15 +4,18 @@
   flex: 1;
   height: 100vh;
   max-width: 100vw;
-  background-color: white;
+  /* background-color: white; */
+  background-color: #313338;
 }
 
 .chat__header {
   padding: 10px;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid lightgray;
-  background-color: #f5f5f5;
+  border-bottom: 1px solid #232428;
+  /* background-color: #f5f5f5; */
+  background-color: #2b2d31;
+  color: #f2f3f5;
 }
 
 
@@ -28,10 +31,11 @@
   font-weight: normal;
   font-size: 14px;
   text-align: center;
+  color: #dbdee1;
 }
 
 .chat__name {
-  color: black;
+  color: #f2f3f5;
 }
 
 .chat__input {
@@ -39,8 +43,8 @@
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  border-top: 1px solid lightgray;
-  background-color: #f5f5f5;
+  border-top: 1px solid #232428;
+  background-color: #2b2d31;
 }
 .chat__input > form {
   flex: 1;
@@ -49,9 +53,11 @@
 .chat__input > form > input {
   width: 98%;
   outline-width: 0;
-  border: 1px solid lightgray;
+  border: 1px solid #383a40;
   border-radius: 999px;
   padding: 5px;
+  background-color: #383a40;
+  color: #dbdee1;
 }
 
 .chat__input > send__button {
@@ -81,7 +87,7 @@
   padding: 10px;
   margin: 10px;
   border-radius: 4px;
-  background-color: #1982FC;
+  background-color: #626ff1;
   color: white;
   font-weight: 800;
   border-width: 0;
@@ -91,8 +97,14 @@
 
 .chat__more_button:hover {
   background-color: gainsboro;
-  color: #1982FC;
+  color: #626ff1;
 }
 .chat__messages::-webkit-scrollbar {
   display: none;
+}
+
+.emojichat {
+  width: 20px; /* Adjust size as needed */
+  height: 20px;
+  vertical-align: text-bottom; /* Align with text baseline */
 }

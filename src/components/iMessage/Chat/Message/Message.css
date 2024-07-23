@@ -9,7 +9,7 @@
 }
 
 .message > p {
-  background-color: #f3f3f5;
+  background-color: #2e3035;
   font-size: medium;
   padding: 15px;
   border-radius: 20px;
@@ -17,7 +17,7 @@
   margin: 10px;
   margin-right: auto;
   word-wrap: break-word;
-
+  color: #dbdee1;
 }
 
 .message > small {
@@ -42,6 +42,6 @@
 }
 
 .message__sender > p {
-  background-color: #3cabfa;
-  color: white;
+  background-color: #626ff1;
+  color: #eaeaea;
 }
