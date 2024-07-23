@@ -37,4 +37,6 @@
   width: 80px; /* Adjust size as needed */
   height: 80px;
   vertical-align: text-bottom; /* Align with text baseline */
+  display: block;
+  margin: auto;
 }
