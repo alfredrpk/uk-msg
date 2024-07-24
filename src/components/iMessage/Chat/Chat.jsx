@@ -19,7 +19,6 @@ function Chat() {
   const [nextPosts_loading, setNextPostsLoading] = useState(false);
   const [mostRecentMessageType, setMostRecentMessageType] = useState('new')
   const [containerStatus, setContainerStatus] = useState('asleep')
-  const [conversationStatus, setConversationStatus] = useState(false)
   const user = useSelector(selectUser);
   // const chatName = useSelector(selectChatName);
   const chatName = 'the uk' //hardcode this for now, just one chat
@@ -46,16 +45,30 @@ function Chat() {
 
     fetch('https://alfredrpk--wake-dev.modal.run/').then(setContainerStatus('waking up'))
   }
+  
+  const postRythmMessage = (input) => {
+
+    db.collection('chats').doc(chatId).collection('messages').add({
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      message: input,
+      uid: "rythmbot",
+      photo: "https://i.imgur.com/HX3sVQE.png",
+      email: "fake@email.com",
+      displayName: "Rythm Bot",
+    });
+  }
 
   const getConversation = (ctx) => {
-    console.log({ctx});
-    setConversationStatus(true)
-    //fetch('https://alfredrpk--uk-app-get-completion-dev.modal.run/?context=' + {ctx})
-    //fetch('https://alfredrpk--uk-app-get-completion-dev.modal.run/?context=Me when big chungus theme song comes on at the reddit convention')
+    postRythmMessage("Creating Conversation... Please wait a minute or two.")
     fetch('https://alfredrpk--uk-app-get-completion-dev.modal.run/?' + new URLSearchParams({
         context: ctx,
-    }).toString()).then(setConversationStatus(false))
-    console.log("did we get here 4");
+    }).toString()).then(response =>{
+      if (!response.ok) {
+        postRythmMessage("Conversation Failed! This is usually either due a timeout or some other internal error. Please try again.")
+      } else {
+        postRythmMessage("Conversation Complete! You can send a new message.")
+      }
+    })
   }
 
   const firstPosts = () => {
@@ -148,18 +161,6 @@ function Chat() {
     }
   }
 
-  const ConvoStatus = () => {
-    if(conversationStatus === true) {
-      return  (<div className='bot__status'>
-        <p>convo status: <b>Creating a conversation... Please wait</b></p>
-      </div>)
-    } else {
-      return (<div className='bot__status'>
-      <p>convo status: <b>Free to create conversation</b></p>
-    </div>)
-    }
-  }
-
   useEffect(() => {
     if(mostRecentMessageType === 'new'){
       scrollToBottom()
@@ -210,7 +211,6 @@ function Chat() {
           {chatName}
         </p>
         <Status />
-        <ConvoStatus />
         </div>
        
       </div>
