@@ -170,7 +170,7 @@ function Chat() {
         return (<div className='bot__status'><p>You are sending messages as: Thomas</p></div>)
     } else if (user.displayName.toLowerCase().includes(("Daniel").toLowerCase())){
         return (<div className='bot__status'><p>You are sending messages as: Daniel</p></div>)
-    } else if (user.displayName.toLowerCase().includes(("Eslam").toLowerCase())){
+    } else if (user.displayName.toLowerCase().includes(("Slam").toLowerCase())){
         return (<div className='bot__status'><p>You are sending messages as: Slam</p></div>)
     } else if (user.displayName.toLowerCase().includes(("Henrry").toLowerCase())){
         return (<div className='bot__status'><p>You are sending messages as: Henrry</p></div>)
