@@ -45,3 +45,8 @@
   background-color: #626ff1;
   color: #eaeaea;
 }
+
+.emote {
+  height: 20px;
+  vertical-align: middle;
+}
