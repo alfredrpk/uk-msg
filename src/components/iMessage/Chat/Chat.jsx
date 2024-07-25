@@ -208,7 +208,7 @@ function Chat() {
       getConversation("Thomas: "+input);
     } else if (user.displayName.toLowerCase().includes(("Daniel").toLowerCase())){
       getConversation("Daniel: "+input);
-    } else if (user.displayName.toLowerCase().includes(("Eslam").toLowerCase())){
+    } else if (user.displayName.toLowerCase().includes(("Slam").toLowerCase())){
       getConversation("Slam: "+input);
     } else if (user.displayName.toLowerCase().includes(("Henrry").toLowerCase())){
       getConversation("Henry: "+input);
