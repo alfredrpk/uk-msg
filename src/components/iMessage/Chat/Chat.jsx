@@ -23,7 +23,7 @@ function Chat() {
   // const chatName = useSelector(selectChatName);
   const chatName = 'the uk' //hardcode this for now, just one chat
   // const chatId = useSelector(selectChatId);
-  const chatId = 'rHGTegWba1tDsNvZ6yc1' //hardcode this for now, just one chat
+  const chatId = 'chat_beta_1' //hardcode this for now, just one chat
   const lastMsgRef = useRef(null)
   const firstMsgRef = useRef(null)
 
