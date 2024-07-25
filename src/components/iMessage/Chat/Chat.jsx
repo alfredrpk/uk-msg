@@ -161,6 +161,24 @@ function Chat() {
     }
   }
 
+  const CurrentUser = () => {
+    if (user.displayName.toLowerCase().includes(("Alfred").toLowerCase())){
+        return (<div className='bot__status'><p>You are sending messages as: Alfred</p></div>)
+    } else if (user.displayName.toLowerCase().includes(("Pranav").toLowerCase())){
+        return (<div className='bot__status'><p>You are sending messages as: Pranav</p></div>)
+    } else if (user.displayName.toLowerCase().includes(("Thomas").toLowerCase())){
+        return (<div className='bot__status'><p>You are sending messages as: Thomas</p></div>)
+    } else if (user.displayName.toLowerCase().includes(("Daniel").toLowerCase())){
+        return (<div className='bot__status'><p>You are sending messages as: Daniel</p></div>)
+    } else if (user.displayName.toLowerCase().includes(("Eslam").toLowerCase())){
+        return (<div className='bot__status'><p>You are sending messages as: Slam</p></div>)
+    } else if (user.displayName.toLowerCase().includes(("Henrry").toLowerCase())){
+        return (<div className='bot__status'><p>You are sending messages as: Henrry</p></div>)
+    } else {
+      return (<div className='bot__status'><p>YOUR CURRENT USER IS NOT RECOGNIZED, LET ALFRED KNOW</p></div>)
+    }
+  }
+
   useEffect(() => {
     if(mostRecentMessageType === 'new'){
       scrollToBottom()
@@ -211,6 +229,7 @@ function Chat() {
           {chatName}
         </p>
         <Status />
+        <CurrentUser />
         </div>
        
       </div>
