@@ -207,7 +207,8 @@ function Chat() {
     } else if (user.displayName.toLowerCase().includes(("Henrry").toLowerCase()) || user.displayName.toLowerCase().includes(("Henry").toLowerCase())){
       actual_user = "Henrry"
     } 
-    if (actual_user === "nan") {
+    console.log(actual_user);
+    if (actual_user != "nan") {
       db.collection('chats').doc(chatId).collection('messages').add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         message: input,
@@ -218,7 +219,7 @@ function Chat() {
       });
       setInput('');
       console.log(user.displayName);
-      getConversation("");
+      getConversation(actual_user +": ");
     } else {
       setInput('');
       postRythmMessage("Your user is not recognized. Your name likely doesn't match. Ask Alfred to fix this.");
