@@ -219,7 +219,7 @@ function Chat() {
       });
       setInput('');
       console.log(user.displayName);
-      getConversation(actual_user +": ");
+      getConversation(actual_user +": "+input);
     } else {
       setInput('');
       postRythmMessage("Your user is not recognized. Your name likely doesn't match. Ask Alfred to fix this.");
