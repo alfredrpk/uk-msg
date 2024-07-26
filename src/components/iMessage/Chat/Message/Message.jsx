@@ -12,7 +12,6 @@ const Message = forwardRef(
   ) => {
     const user = useSelector(selectUser);
 
-    // Emote map
     const emoteMap = {
       'argChamp': 'https://i.imgur.com/XUSntXj.png',
       'baeberle': 'https://i.imgur.com/qjmDcG2.png',
@@ -63,16 +62,13 @@ const Message = forwardRef(
       'zeroTwoof': 'https://i.imgur.com/PtW945R.png'
     };
 
-    // Function to replace emotes with SVGs
     const parseMessage = (message) => {
       const emotePattern = /:([a-zA-Z0-9_]+):/g;
       return message.split(emotePattern).map((part, index) => {
         if (emoteMap[part]) {
-          console.log("emote matched")
           return <img key={index} src={emoteMap[part]} alt={part} className="emote" />;
         } else if (emotePattern.test(`:${part}:`)) {
           // If part matches the emote pattern but not in emoteMap, return as plain text
-          console.log("emote not matched")
           return `:${part}:`;
         }
         return part;

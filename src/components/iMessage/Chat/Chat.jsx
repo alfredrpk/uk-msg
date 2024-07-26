@@ -60,15 +60,19 @@ function Chat() {
 
   const getConversation = (ctx) => {
     postRythmMessage("Creating Conversation... Please wait a minute or two.")
-    fetch('https://alfredrpk--uk-app-get-completion-dev.modal.run/?' + new URLSearchParams({
-        context: ctx,
-    }).toString()).then(response =>{
-      if (!response.ok) {
-        postRythmMessage("Conversation Failed! This is usually either due a timeout or some other internal error. Please try again.")
-      } else {
-        postRythmMessage("Conversation Complete! You can send a new message.")
-      }
-    })
+    try {
+      fetch('https://alfredrpk--uk-app-get-completion-dev.modal.run/?' + new URLSearchParams({
+          context: ctx,
+      }).toString()).then(response =>{
+        if (!response.ok) {
+          postRythmMessage("Conversation Failed! This is usually either due a timeout or some other internal error. Please try again.")
+        } else {
+          postRythmMessage("Conversation Complete! You can send a new message.")
+        }
+      })
+    } catch {
+      postRythmMessage("Conversation Failed! This is usually either due a timeout or some other internal error. Please try again.")
+    }
   }
 
   const firstPosts = () => {
@@ -189,34 +193,36 @@ function Chat() {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    db.collection('chats').doc(chatId).collection('messages').add({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: input,
-      uid: user.uid,
-      photo: user.photo,
-      email: user.email,
-      displayName: user.displayName,
-    });
-    setInput('');
-    console.log(user.displayName);
+    let actual_user = "nan";
     if (user.displayName.toLowerCase().includes(("Alfred").toLowerCase())){
-      console.log("did we get here 1");
-      getConversation("Alfred: "+input);
+      actual_user = "Alfred"
     } else if (user.displayName.toLowerCase().includes(("Pranav").toLowerCase())){
-      getConversation("Pranav: "+input);
+      actual_user = "Pranav"
     } else if (user.displayName.toLowerCase().includes(("Thomas").toLowerCase())){
-      getConversation("Thomas: "+input);
+      actual_user = "Thomas"
     } else if (user.displayName.toLowerCase().includes(("Daniel").toLowerCase())){
-      getConversation("Daniel: "+input);
+      actual_user = "Daniel"
     } else if (user.displayName.toLowerCase().includes(("Slam").toLowerCase())){
-      getConversation("Slam: "+input);
-    } else if (user.displayName.toLowerCase().includes(("Henrry").toLowerCase())){
-      getConversation("Henry: "+input);
+      actual_user = "Slam"
+    } else if (user.displayName.toLowerCase().includes(("Henrry").toLowerCase()) || user.displayName.toLowerCase().includes(("Henry").toLowerCase())){
+      actual_user = "Henrry"
+    } 
+    if (actual_user === "nan") {
+      db.collection('chats').doc(chatId).collection('messages').add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        message: input,
+        uid: user.uid,
+        photo: user.photo,
+        email: user.email,
+        displayName: actual_user,
+      });
+      setInput('');
+      console.log(user.displayName);
+      getConversation("");
     } else {
-      console.log("PERSON NOT FOUND, RESORTING TO DEFAULT")
-      getConversation("Alfred: "+input);
+      setInput('');
+      postRythmMessage("Your user is not recognized. Your name likely doesn't match. Ask Alfred to fix this.");
     }
-    console.log("did we get here 2");
     return false
   };
 
