@@ -28,7 +28,7 @@ function Chat() {
   const firstMsgRef = useRef(null)
 
   const updateContainerStatus = () => {
-    fetch('https://alfredrpk--alive-dev.modal.run/')
+    fetch('https://alfredrpk--alive.modal.run/')
         .then(response => response.json())
         .then(data => {
           if(data.num_total_runners === 0) {
@@ -43,7 +43,7 @@ function Chat() {
 
   const wakeContainer = () => {
 
-    fetch('https://alfredrpk--wake-dev.modal.run/').then(setContainerStatus('waking up'))
+    fetch('https://alfredrpk--wake.modal.run/').then(setContainerStatus('waking up'))
   }
   
   const postRythmMessage = (input) => {
@@ -61,7 +61,7 @@ function Chat() {
   const getConversation = (ctx) => {
     postRythmMessage("Creating Conversation... Please wait a minute or two.")
     try {
-      fetch('https://alfredrpk--uk-app-get-completion-dev.modal.run/?' + new URLSearchParams({
+      fetch('https://alfredrpk--uk-app-get-completion.modal.run/?' + new URLSearchParams({
           context: ctx,
       }).toString()).then(response =>{
         if (!response.ok) {
