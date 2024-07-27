@@ -19,10 +19,20 @@ export const SEO = () => {
   );
 }
 
-
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  const handleUserLogin = (selectedUser) => {
+    dispatch(
+      login({
+        uid: selectedUser.uid,
+        photo: selectedUser.photoURL,
+        email: selectedUser.email,
+        displayName: selectedUser.displayName,
+      })
+    );
+  };
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -40,11 +50,13 @@ function App() {
       }
     });
   }, []);
+
   return (
     <>
-  <SEO />
-  <div className="app">{user ? <Imessage /> : <Login />}</div>
-  </>)
+      <SEO />
+      <div className="app">{user ? <Imessage /> : <Login onUserSelect={handleUserLogin} />}</div>
+    </>
+  );
 }
 
 export default App;
